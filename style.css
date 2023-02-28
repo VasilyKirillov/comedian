@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("./images/stage.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    min-width: 400px;
+}
+
+.curtain {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    transition: ease-in-out 3s;
+    opacity: 100%;
+} 
+
+.comedian {
+    position: fixed;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden;
+}
+
+#speech_4 {
+    visibility: inherit;
+    z-index: 2;
+    position: relative;
+    top: -100px;
+    right: 50%;
+    background-image: url("./images/speech_2.png");
+    background-repeat: no-repeat;
+    background-size: 300px;
+    background-position: top;
+    width: 300px;
+    height: 250px;
+}
+
+#comedian_4 {
+    visibility: visible;
+
+    background-image: url("./images/comedian_4.png");
+    background-repeat: no-repeat;
+    background-size: 255px;
+    background-position: bottom;
+    width: 300px;
+    height: 600px;
+}
+
+#speech_3 {
+    visibility: inherit;
+    z-index: 2;
+    position: relative;
+    top: -80px;
+    left: 55%;
+    background-image: url("./images/speech_1.png");
+    background-repeat: no-repeat;
+    background-size: 300px;
+    background-position: top;
+    width: 300px;
+    height: 250px;
+}
+
+#comedian_3 {
+    /* visibility: visible; */
+
+    background-image: url("./images/comedian_3.png");
+    background-repeat: no-repeat;
+    background-size: 230px;
+    background-position: bottom;
+    width: 300px;
+    height: 600px;
+}
+
+#speech_2 {
+    visibility: inherit;
+    z-index: 2;
+    position: relative;
+    top: -90px;
+    left: -52%;
+    background-image: url("./images/speech_2.png");
+    background-repeat: no-repeat;
+    background-size: 300px;
+    background-position: top;
+    width: 300px;
+    height: 250px;
+}
+
+#comedian_2 {
+    /* visibility: visible; */
+
+    background-image: url("./images/comedian_2.png");
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-position: bottom;
+    width: 300px;
+    height: 600px;
+}
+
+#speech_1 {
+    visibility: inherit;
+    z-index: 2;
+    position: relative;
+    top: -80px;
+    right: -50%;
+    background-image: url("./images/speech_1.png");
+    background-repeat: no-repeat;
+    background-size: 300px;
+    background-position: top;
+    width: 300px;
+    height: 250px;
+}
+
+#comedian_1 {
+    /* visibility: visible; */
+
+    background-image: url("./images/comedian_1.png");
+    background-repeat: no-repeat;
+    background-size: 300px;
+    background-position: bottom;
+    width: 300px;
+    height: 600px;
+}
+
+/* .laughter::before {
+    content: "\1FAE2 \1F601 \1F92D";
+    display: block;
+}
+.laughter::after {
+    content: "\1F602 \1F923 \1F929";
+    display: block;
+} */
+
+.laughter {
+    z-index: 3;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    visibility: hidden;
+    background-image: url("./images/laugh.png");
+    background-repeat: no-repeat;
+    background-size: 300px;
+    background-position: center;
+    width: 300px;
+    height: 300px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* overflow-wrap: break-word; */
+    color: blueviolet;
+    /* padding: 43% 20%; */
+    font-size: large;
+    /* text-align: center; */
+}
+
+.burst {
+    animation: bang 1.3s ease-in-out;
+}
+
+@keyframes bang {
+    0% {
+        transform: rotate(-5deg) scale(1);
+    }
+    20% {
+        transform: rotate(4deg) scale(2);
+    }
+    52% {
+        transform: rotate(-5deg) scale(1.5);
+    }
+    77% {
+        transform: rotate(5deg) scale(2.2);
+    }
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+.open {
+    opacity: 0;
+}
