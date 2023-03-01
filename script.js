@@ -1,40 +1,47 @@
 window.addEventListener("load", (event) => {
     lightsOn();
-    setInterval(() => cycle(), 1000);
+    setTimeout(() => cycle(), 5000);
 });
 
 let stop = false;
 
 const cycle = () => {
-    getJoke();
-    showLaugh();
-    if (!stop) {
-        cycle();
-    }
+    getJoke(() => setTimeout(showLaugh(() => {
+        console.log('stop=', stop);
+        if (!stop) {
+            cycle();
+        } else {
+            hold();
+        }
+    }), 3000));
 }
 
 document.addEventListener('keypress', (e) => {
     if (e.code === 'Space') {
-        stop == true;
-        // getJoke();
-        // sayJoke({setup:"One\ntwo\nthree...",punchline:"four? no, boom!"});
-    } else if (e.code === 'KeyX') {
-        showLaugh();
+        stop = !stop;
+        if (!stop) {
+            setTimeout(cycle, 500);
+        }
     }
 });
 
-const getJoke = async () => {
+const hold = () => {
+    const postures = document.querySelectorAll('.comedian');
+    postures.forEach(e => e.classList.remove('acting'));
+    postures.item(0).classList.add('acting');
+}
+
+const getJoke = async (cb) => {
     console.log('getJoke');
     try {
         const res = await fetch('https://official-joke-api.appspot.com/jokes/random');
         const joke = await res.json();
-        console.log('joke=', joke);
-        sayJoke(joke);
+        sayJoke(joke, cb);
     } catch (e) {
         console.error('error fetching the joke', e);
         const jokes = JSON.parse(atob(data));
         const joke = jokes[getRandomInt(jokes.length - 1)];
-        sayJoke(joke);
+        sayJoke(joke, cb);
     }
 }
 
@@ -42,12 +49,13 @@ const filter = text => {
     return text.replaceAll('\n', '<br/>');
 }
 
-const sayJoke = joke => {
+const sayJoke = (joke, cb) => {
     const firstDialog = changePosture().firstElementChild;
     firstDialog.innerHTML = filter(joke.setup);
     setTimeout(() => {
         const secondDialog = changePosture().firstElementChild;
         secondDialog.innerHTML = filter(joke.punchline);
+        cb && setTimeout(cb, 1500);
     }, 4000);
 }
 
@@ -85,7 +93,7 @@ const getRandomIndex2 = postures => {
 }
 
 
-const showLaugh = () => {
+const showLaugh = (cb) => {
     const tenPercentH = window.innerHeight / 10;
     const tenPercentW = window.innerWidth / 10;
     const courterW = window.innerWidth / 4;
@@ -110,6 +118,7 @@ const showLaugh = () => {
     setTimeout(() => {
         laf.style.visibility = 'hidden';
         laf.classList.remove('burst');
+        cb && setTimeout(cb, 1500);
     }, 1250);
 }
 
@@ -146,12 +155,12 @@ const getRandomIndex = (postures) => {
     let indexes = Array(postures.length - 2);
     let n = 1, i = 0;
     while (i < indexes.length) {
-        if (n !== actingIndex) { 
+        if (n !== actingIndex) {
             indexes[i] = n++;
             i++;
         } else {
             n++;
-        } 
+        }
     }
 
     return shuffleArray(indexes).pop();
