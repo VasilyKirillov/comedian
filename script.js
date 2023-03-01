@@ -7,7 +7,6 @@ let stop = false;
 
 const cycle = () => {
     getJoke(() => setTimeout(showLaugh(() => {
-        console.log('stop=', stop);
         if (!stop) {
             cycle();
         } else {
@@ -32,7 +31,6 @@ const hold = () => {
 }
 
 const getJoke = async (cb) => {
-    console.log('getJoke');
     try {
         const res = await fetch('https://official-joke-api.appspot.com/jokes/random');
         const joke = await res.json();
@@ -88,7 +86,6 @@ const getRandomIndex2 = postures => {
         }
         possibleIndex = tmp;
     }
-    console.log(`a=${actingIndex} p=${possibleIndex}`);
     return possibleIndex;
 }
 
