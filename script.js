@@ -1,6 +1,6 @@
 window.addEventListener("load", (event) => {
     lightsOn();
-    setTimeout(() => cycle(), 5000);
+    setTimeout(() => cycle(), 3000);
 });
 
 let stop = false;
@@ -16,7 +16,7 @@ const cycle = () => {
 }
 
 document.addEventListener('keypress', (e) => {
-    if (e.code === 'Space') {
+    if (e.code === 'Space' || (e.key === 'c' && e.ctrlKey)) {
         stop = !stop;
         if (!stop) {
             setTimeout(cycle, 500);
@@ -100,7 +100,7 @@ const showLaugh = (cb) => {
     const y = verticalBase + getRandomInt(-tenPercentH, tenPercentH);
     const x = horisontalBase + getRandomInt(-tenPercentW, tenPercentW);
 
-    const smiles = ['😆', '😅', '😀', '🤣', '😂', '😁', '😊', '😍', '🤩', '😋', '😛', '😜', '🤪', '😝', '🤗', '🤭', '🥵', '🥶', '😵', '🥳', '🥳', '🤓', '🧐', '😳', '😱', '🤬', '🤫'];
+    const smiles = ['😆', '😅', '😀', '🤣', '😂', '😁', '😊', '😍', '🤩', '😋', '😛', '😜', '🤪', '😝', '🤗', '🤭', '🥵', '😵', '🥳', '🥳', '🤓', '🧐', '😳', '😱', '🤬', '🤫'];
     const smile = smiles[getRandomInt(smiles.length - 1)];
 
     const laf = document.getElementById('laughter_1');
